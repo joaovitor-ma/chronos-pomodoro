@@ -36,6 +36,8 @@ export function App() {
                             id="meuInput"
                             type="text"
                             labelText="Task"
+                            placeholder="Digite algo"
+                            defaultValue={"valor preenchido"}
                         />
                     </div>
 
