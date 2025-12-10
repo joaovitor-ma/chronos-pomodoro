@@ -9,6 +9,7 @@ import { useTaskContext } from "../../contexts/TaskContext/useTaskContext"
 
 import { PlayCircleIcon } from "lucide-react";
 import { getNextCycle } from "../../utils/getNextCycle";
+import { getNextCycleType } from "../../utils/getNextCycleType";
 
 export function MainForm() {
 
@@ -17,6 +18,7 @@ export function MainForm() {
     const taskNameRef = useRef<HTMLInputElement>(null)
 
     const nextCycle = getNextCycle(state.currentCycle)
+    const nextCycleType = getNextCycleType(nextCycle)
 
     function handleCreateNewTask(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
@@ -37,7 +39,7 @@ export function MainForm() {
             completeDate: null,
             interruptDate: null,
             duration: 1,
-            type: "workTime"
+            type: nextCycleType
         }
 
         const secondsRemaining = newTask.duration * 60
