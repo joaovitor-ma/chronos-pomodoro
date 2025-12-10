@@ -38,7 +38,7 @@ export function MainForm() {
             startDate: Date.now(),
             completeDate: null,
             interruptDate: null,
-            duration: 1,
+            duration: state.config[nextCycleType],
             type: nextCycleType
         }
 
@@ -69,7 +69,6 @@ export function MainForm() {
                     type="text"
                     labelText="Task"
                     placeholder="Digite algo"
-                    defaultValue={"valor preenchido"}
                     ref={taskNameRef}
                 />
             </div>
