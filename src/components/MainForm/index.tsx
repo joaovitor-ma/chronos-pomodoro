@@ -10,6 +10,7 @@ import { useTaskContext } from "../../contexts/TaskContext/useTaskContext"
 import { PlayCircleIcon } from "lucide-react";
 import { getNextCycle } from "../../utils/getNextCycle";
 import { getNextCycleType } from "../../utils/getNextCycleType";
+import { formatSecondsToMinutes } from "../../utils/formatSecondsToMinutes";
 
 export function MainForm() {
 
@@ -50,7 +51,7 @@ export function MainForm() {
                 activeTask: newTask,
                 currentCycle: nextCycle,
                 secondsRemaining,
-                formattedSecondsRemaining: "00:00",
+                formattedSecondsRemaining: formatSecondsToMinutes(secondsRemaining),
                 tasks: [
                     ...prevState.tasks, newTask
                 ],
