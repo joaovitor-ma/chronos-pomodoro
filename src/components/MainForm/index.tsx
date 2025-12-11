@@ -11,6 +11,7 @@ import { PlayCircleIcon, StopCircleIcon } from "lucide-react";
 import { getNextCycle } from "../../utils/getNextCycle";
 import { getNextCycleType } from "../../utils/getNextCycleType";
 import { TaskActionTypes } from "../../contexts/TaskContext/taskActions";
+import { Tips } from "../Tips";
 
 export function MainForm() {
 
@@ -64,9 +65,7 @@ export function MainForm() {
             </div>
 
             <div className="formRow">
-                <p>
-                    Lorem ipsum dolor sit amet.
-                </p>
+                <Tips />
             </div>
 
             <div className="formRow">
