@@ -10,11 +10,11 @@ import { useTaskContext } from "../../contexts/TaskContext/useTaskContext"
 import { PlayCircleIcon, StopCircleIcon } from "lucide-react";
 import { getNextCycle } from "../../utils/getNextCycle";
 import { getNextCycleType } from "../../utils/getNextCycleType";
-import { formatSecondsToMinutes } from "../../utils/formatSecondsToMinutes";
+import { TaskActionTypes } from "../../contexts/TaskContext/taskActions";
 
 export function MainForm() {
 
-    const { state, setState } = useTaskContext()
+    const { state, dispatch } = useTaskContext()
 
     const taskNameRef = useRef<HTMLInputElement>(null)
 
@@ -43,43 +43,11 @@ export function MainForm() {
             type: nextCycleType
         }
 
-        const secondsRemaining = newTask.duration * 60
-
-        setState(prevState => {
-            return {
-                ...prevState,
-                activeTask: newTask,
-                currentCycle: nextCycle,
-                secondsRemaining,
-                formattedSecondsRemaining: formatSecondsToMinutes(secondsRemaining),
-                tasks: [
-                    ...prevState.tasks, newTask
-                ],
-                config: {
-                    ...prevState.config
-                }
-            }
-        })
+        dispatch({ type: TaskActionTypes.START_TASK, payload: newTask })
     }
 
     function handleInterruptTask() {
-        setState(prevState => {
-            return {
-                ...prevState,
-                activeTask: null,
-                secondsRemaining: 0,
-                formattedSecondsRemaining: "00:00",
-                tasks: prevState.tasks.map(task => {
-                    if(prevState.activeTask && prevState.activeTask.id === task.id) {
-                        return {
-                            ...task,
-                            interruptDate: Date.now()
-                        }
-                    }
-                    return task
-                })
-            }
-        })
+        dispatch({ type: TaskActionTypes.INTERRUPT_TASK, payload: null })
     }
 
     return (
